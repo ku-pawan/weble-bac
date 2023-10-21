@@ -13,6 +13,7 @@ server.use(cors());
 server.get("/recipes/search", async (req, res) => {
   const { query } = req.query;
 
+  
   try {
     let apiUrl =
       "https://api.spoonacular.com/recipes/complexSearch?apiKey=90adf2e6f0344635a5f8c78d1506aaa4&number=20";
