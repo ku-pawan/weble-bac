@@ -8,12 +8,17 @@ const { auth } = require("./middleware/auth");
 
 const server = express();
 server.use(express.json());
-server.use(cors());
+
+// CORS configuration to allow requests from http://localhost:5173
+server.use(cors({
+  origin: 'http://localhost:5173',
+  methods: 'GET,POST,PUT,DELETE',
+  credentials: true, // Enable credentials (cookies, authorization headers)
+}));
 
 server.get("/recipes/search", async (req, res) => {
   const { query } = req.query;
 
-  
   try {
     let apiUrl =
       "https://api.spoonacular.com/recipes/complexSearch?apiKey=90adf2e6f0344635a5f8c78d1506aaa4&number=20";
@@ -39,7 +44,7 @@ server.use("/recipe", RecipeRoute);
 server.listen(8080, async () => {
   try {
     await connection;
-    console.log("connected to database");
+    console.log("connected to the database");
     console.log("server is running on port 8080");
   } catch (error) {
     console.log(error);
