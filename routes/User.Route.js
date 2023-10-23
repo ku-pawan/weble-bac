@@ -18,6 +18,7 @@ UserRoute.post("/register", async (req, res) => {
 
 UserRoute.post("/login", async (req, res) => {
   const { username, password } = req.body;
+  console.log(req.body)
   try {
     const user = await UserModel.findOne({ username });
     if (!user) {
