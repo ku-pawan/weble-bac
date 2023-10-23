@@ -32,6 +32,7 @@ server.get("/recipes/search", async (req, res) => {
 });
 
 server.use("/user", UserRoute);
+
 server.use(auth);
 server.use("/recipe", RecipeRoute);
 
